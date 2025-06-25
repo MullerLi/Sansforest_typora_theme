@@ -1,5 +1,5 @@
 # Sansforest　無襯森語
-![thumbnail](./thumbnail.png)
+<img src="./thumbnail.png" alt="thumbnail" style="zoom:25%;" />
 
 ## English | [繁體中文](README_TC.md)
 
@@ -9,7 +9,7 @@
 
 - 🖤 Dark mode with green accent (`#55c95f`)
 - 🧠 Traditional Chinese support
-![Preview](./Preview/preview.png)
+<img src="./Preview/preview.png" alt="Preview" style="zoom:25%;" />
 
 ## 📥 Installation
 
