@@ -1,4 +1,5 @@
-# Sansforest Theme
+# Sansforest　無襯森語
+![thumbnail](./thumbnail.png)
 
 ## English | [繁體中文](README_TC.md)
 
@@ -8,11 +9,10 @@
 
 - 🖤 Dark mode with green accent (`#55c95f`)
 - 🧠 Traditional Chinese support
+![Preview](./Preview/preview.png.png)
 
 ## 📥 Installation
 
-1. Download `Sansforest.css` from [Github Release Page](https://github.com/obscurefreeman/typora_theme_blackout/releases)
-
-1. Put them into Typora's `themes/` directory
-2. In Typora, go to `Preferences → Appearance → Theme` and select `Sansforest`
-
+1. Download `sansforest.css`, `sansforest_day`, and `sansforest` from [Github Release Page](https://github.com/obscurefreeman/typora_theme_blackout/releases)
+2. Put them into Typora's `themes/` directory
+3. In Typora, go to `Theme` and select `sansforest`
