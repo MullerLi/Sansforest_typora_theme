@@ -13,7 +13,7 @@
 
 ## 📥 Installation
 
-1. Download `sansforest.css`, `sansforest_day`, and `sansforest` from [Github Release Page](https://github.com/obscurefreeman/typora_theme_blackout/releases)
+1. Download `sansforest.css`, `sansforest_day`, and `sansforest` from [Github Release Page]https://github.com/MullerLi/Sansforest_typora_theme/releases/tag/v1.0.0)
 2. Put them into Typora's `themes/` directory
 3. In Typora, go to `Theme` and select `sansforest`
 
