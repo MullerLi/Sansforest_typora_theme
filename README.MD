@@ -9,7 +9,7 @@
 
 - 🖤 Dark mode with green accent (`#55c95f`)
 - 🧠 Traditional Chinese support
-![Preview](./Preview/preview.png.png)
+![Preview](./Preview/preview.png)
 
 ## 📥 Installation
 

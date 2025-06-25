@@ -9,7 +9,7 @@
 
 - 🖤 暗色模式，綠色陪襯 (`#55c95f`)
 - 🧠 精選字體，人文簡約
-![Preview](./Preview/preview.png.png)
+![Preview](./Preview/preview.png)
 
 ## 📥 Installation
 
