@@ -578,4 +578,90 @@ body ::selection,#write ::selection{
     background-color: var(--active-item-bg-color) !important;
   }}
 
+/******** 13. SMOOTH TRANSITIONS *********************************************/
+@layer theme {
+  a,
+  button, .btn,
+  .file-node-content,
+  .outline-item,
+  .nav-group-item,
+  .searchpanel-search-option-btn {
+    transition: all 0.2s ease-in-out;
+  }
+}
+
+/******** 14. TABLE OF CONTENTS [TOC] ****************************************/
+@layer theme {
+  .md-toc-item {
+    list-style-type: none;
+    padding-left: 1em;
+    position: relative;
+  }
+  .md-toc-item a {
+    color: var(--text-dimmed);
+    text-decoration: none;
+    display: block;
+    padding: 4px 10px;
+    border-left: 2px solid transparent;
+  }
+  .md-toc-item a:hover {
+    color: var(--text-color);
+    background-color: var(--active-file-bg-color);
+    border-left-color: var(--primary-color);
+  }
+  .md-toc-item .md-toc-inner {
+    display: none; /* Hide sub-levels by default if needed */
+  }
+}
+
 /* ============================ End of Theme · Last updated: 2025-06-19 v8 ============================ */
+
+/* ============================================================================
+   13. YAML Front Matter Block (Dark Theme)
+   ---------------------------------------------------------------------------
+   - Author: Gemini
+   - Date: 2025-06-29
+   - Description: Fix for unreadable text issue in YAML front matter.
+   -              Provides a clear, aesthetically pleasing design for the
+   -              metadata block, consistent with the dark theme's style.
+   ============================================================================ */
+@layer overrides {
+  /* --- Container for the YAML block --- */
+  pre.md-meta-block {
+    background-color: var(--side-bar-bg-color); /* Use sidebar bg for subtle contrast */
+    color: var(--text-dimmed);      /* Base text color, using the dimmed variable */
+    font-family: var(--monospace);  /* Use monospaced font for alignment */
+    font-size: 0.9rem;              /* Slightly smaller font size */
+    padding: 1.2em 1.5em;           /* Generous padding */
+    margin-bottom: 2.5rem;          /* Space between meta block and content */
+    border-bottom: 1px solid var(--color-border-secondary); /* Use theme's border color */
+    border-radius: 0;               /* Sharp corners, more "meta" feel */
+    white-space: pre-wrap;          /* Ensure long lines wrap */
+    word-break: break-all;
+  }
+
+  /* --- The "---" separator lines --- */
+  .md-meta-hr {
+    color: var(--text-dimmed); /* A neutral, dimmed gray for the separators */
+    font-weight: bold;
+  }
+
+  /* --- Syntax Highlighting within the block --- */
+  .md-meta-block .cm-key {
+    color: var(--primary-color); /* Use theme's primary green for keys */
+    font-weight: 600;
+  }
+
+  .md-meta-block .cm-string {
+    color: var(--link-color); /* Use theme's blue for string values */
+  }
+
+  .md-meta-block .cm-number {
+    color: var(--code-number); /* Use theme's number color */
+  }
+
+  .md-meta-block .cm-atom,
+  .md-meta-block .cm-keyword {
+    color: var(--code-keyword); /* Use theme's keyword color for booleans etc. */
+  }
+}

@@ -1,546 +1,117 @@
 /* ============================================================================
-   Typora Theme – Day Theme (Based on GitHub Dark) · User Modified
-   Last Updated 2025-06-25
+   Typora Theme – Sansforest Day (Inherited)
+   Last Updated: 2025-06-29
    ---------------------------------------------------------------------------
-   ‧ 白色背景 #ffffff，側欄 #f5f5f5
-   ‧ 主題綠 #357d3b 為主要強調色 (Accent / active)
-   ‧ CodeMirror (程式碼區塊) 改為淺色背景語法配色
-   ‧ 選取文字反白 = 柔和半透明藍
-   ‧ Heading inline badge 已隱藏
-   ‧ Writer pane 寬度：860 / 1024 / 1200
-   ‧ 正文 font-weight: 500
-   ‧ UI 互動元素（連結、選取項目）採用主題綠與藍色
-   ‧ Mermaid 圖表改為淺色預設主題
-   ‧ Blockquote 左邊框為主題綠
+   This theme inherits all styles from sansforest.css (Dark Theme)
+   and overrides the color palette for a light mode experience.
    ============================================================================ */
-@font-face {
-  font-family: "源流明體月 M";
-  src: url("./sansforest/GenRyuMin2TW-M.otf") format("opentype");
-  font-style: normal;
-  font-weight: normal;
-}
 
-@font-face {
-  font-family: "TRW UDMincho";
-  src: url("./sansforest/TRWUDMincho-R.ttf") format("truetype");
-  font-style: normal;
-  font-weight: normal;
-}
+@import url("sansforest.css");
 
-@font-face {
-  font-family: "芫荽";
-  src: url("./sansforest/Iansui-Regular.ttf") format("truetype");
-  font-style: normal;
-  font-weight: normal;
-}
-
-@font-face {
-  font-family: "Muli";
-  src: url("./sansforest/Mulish-SemiBold.ttf") format("truetype");
-  font-style: normal;
-  font-weight: normal;
-}
-
-@font-face {
-  font-family: "源石黑體月 R";
-  src: url("./sansforest/GenSekiGothic2-R.ttc") format("truetype");
-  font-style: normal;
-  font-weight: normal;
-}
-
-@font-face {
-  font-family: "Inter";
-  src: url("./sansforest/Inter-Regular.ttf") format("truetype");
-  font-style: normal;
-  font-weight: normal;
-}
-
-@font-face {
-  font-family: "JetBrains Mono";
-  src: url("./sansforest/JetBrainsMono-Regular.ttf") format("truetype");
-  font-style: normal;
-  font-weight: normal;
-}
-
-@font-face {
-  font-family: "Source Serif 4 18pt";
-  src: url("./sansforest/SourceSerif4_18pt-Regular.ttf") format("truetype");
-  font-style: normal;
-  font-weight: 400;
-}
-
-@font-face {
-  font-family: "Alte DIN 1451 Mittelschrift";
-  src: url("./sansforest/din1451alt.ttf") format("truetype");
-  font-style: normal;
-  font-weight: 400;
-}
-
-@layer theme {
-  input, textarea, select {
-    font-family: "Alte DIN 1451 Mittelschrift", sans-serif;
-    font-size: 1rem;
-    font-weight: 400;
-    letter-spacing: 0.03em;
-  }
-
-  button, .btn, .custom-button {
-    font-family: "Alte DIN 1451 Mittelschrift", sans-serif;
-    font-weight: 500;
-    letter-spacing: 0.05em;
-    text-transform: uppercase;
-  }
-}
-/******** 1. 全局 UI 使用 DIN（不覆蓋正文） ********/
-@layer theme{
-  /* 只針對側欄、選單、對話框等 UI 元素 */
-  .file-node-title,
-  .searchpanel-search-option-btn,
-  .outline-item,
-  .outline-title,
-  .md-image,
-  .md-url,
-  .megamenu,
-  .sidebar,
-  .footer,
-  .top-title,
-  .context-menu,
-  .modal-content,
-  .dropdown-menu,
-  .dropdown-item,
-  .info-panel,
-  .menu-item{
-    font-family:"Alte DIN 1451 Mittelschrift",sans-serif;
-    font-weight:400;
-  }
-  .nav-group-item{
-    font-family:"Alte DIN 1451 Mittelschrift",sans-serif;
-    font-weight:300;
-  }
-}
-
-/******** 2. 按鈕使用 DIN；輸入區與正文保持 var(--font-sans) ********/
-@layer theme{
-  input,textarea,select{
-    font-family:var(--font-sans);
-    font-size:1rem;font-weight:400;letter-spacing:0.01em;
-  }
-  button,.btn,.custom-button{
-    font-family:"Alte DIN 1451 Mittelschrift",sans-serif;
-    font-weight:400;letter-spacing:0.05em;text-transform:uppercase;
-  }
-}
-/******** 3. meta / caption / footnote ********/
-@layer theme{
-  .meta,.caption,.footnote,.meta-content,.md-meta{
-    font-family:"Source Serif 4 18pt","TRW UDMincho",serif!important;
-    font-size:0.85rem;line-height:1.5;color:var(--text-dimmed);
-  }
-}
-/******** 4. 引言 blockquote 使用 TRW UDMincho（中文優先）+ Source Serif 4 18pt（英文） ********/
-@layer theme {
-  #write blockquote,
-  blockquote {
-    font-family: "Source Serif 4 18pt", "TRW UDMincho", "芫荽", serif;
-    font-size: 1rem;
-    line-height: 1.7;
-    font-weight: 300;
-    color: var(--text-dimmed); /* [修改] 原本是 #bababa，改用變數 */
-    letter-spacing: 0.015em;
-  }
-
-  /* 中文區塊（lang=zh）優先使用 TRW UDMincho */
-  #write blockquote:lang(zh),
-  blockquote:lang(zh),
-  #write blockquote *:lang(zh),
-  blockquote *:lang(zh) {
-    font-family: "TRW UDMincho", "芫荽", "Source Serif 4 18pt", serif;
-  }
-
-  /* 英文區塊（lang=en）優先使用 Source Serif 4 18pt */
-  #write blockquote:lang(en),
-  blockquote:lang(en),
-  #write blockquote *:lang(en),
-  blockquote *:lang(en) {
-    font-family: "Source Serif 4 18pt", "TRW UDMincho", "芫荽", serif;
-  }
-
-  /* 所有 blockquote 內元素的通用樣式 */
-  #write blockquote *,
-  blockquote * {
-    font-weight: 300;
-    letter-spacing: 0.015em;
-    color: var(--text-dimmed); /* [修改] 原本是 #bababa，改用變數 */
-  }
-}
-
-
-
-/******** 0. ROOT ************************************************************/
-@layer base, theme, overrides;
-
-:root{
-  /* -- 白天主題色彩基礎 -- */
-  --bg-color: #ffffff;                            /* [修改] 背景改為白色 */
-  --side-bar-bg-color: #f5f5f5;                  /* [修改] 側欄使用非常淺的灰色，以和主視窗區分 */
-  --item-hover-bg-color: #e0e0e0;                /* [修改] 滑鼠懸停項目的背景色，改為淺灰色 */
-  --item-hover-text-color: #55c95f;              /* [不變] 懸停文字顏色，維持主題綠色 */
-  --text-color: #24292e;                          /* [修改] 主要文字顏色，改為深灰色 (比純黑 #000000 柔和) */
-  --text-dimmed: #57606a;                        /* [修改] 輔助/較淡的文字顏色，改為中灰色 */
-  --primary-color: #357d3b;                      /* [修改] 主要顏色從亮綠改為深一點的綠，在白底上更清晰 */
-  --active-file-border-color: var(--primary-color); /* [不變] 使用新的 primary-color */
-  --active-file-bg-color: #e8f5e9;               /* [修改] 當前活動檔案的背景，改為淡綠色以匹配主題 */
-  --active-item-bg-color: #e8f5e9;               /* [修改] 當前活動項目的背景，同上 */
+/* ============================================================================
+   1. ROOT OVERRIDES (DAY THEME PALETTE)
+   ============================================================================ */
+:root {
+  /* -- Day Theme Color Palette -- */
+  --bg-color: #ffffff;
+  --side-bar-bg-color: #f5f5f5;
+  --item-hover-bg-color: #e0e0e0;
+  --item-hover-text-color: #357d3b;
+  --text-color: #24292e;
+  --text-dimmed: #57606a;
+  --primary-color: #357d3b;
+  --active-file-border-color: var(--primary-color);
+  --active-file-bg-color: #e8f5e9;
+  --active-item-bg-color: #e8f5e9;
 
   /* -- Link -- */
-  --link-color: #0969da;                         /* [修改] 連結顏色改為 GitHub 的標準藍色，在白底上更易讀 */
-  --link-alt-color: #0969da;                     /* [修改] 同上 */
-  --color-border-secondary: #d0d7de;             /* [修改] 次要邊框顏色 (如 h1/h2 底線)，改為淺灰色 */
+  --link-color: #0969da;
+  --link-alt-color: #0969da;
+  --color-border-secondary: #d0d7de;
 
-
-  /* -- Code (程式碼區塊配色，改為適合淺色背景) -- */
-  --code-bg: #f6f8fa;                            /* [修改] 程式碼區塊背景 */
-  --code-border-color: #d0d7de;                  /* [修改] 程式碼區塊邊框 */
-  --code-cursor: #24292e;                        /* [修改] 游標顏色 */
-  --code-fg: #24292e;                            /* [修改] 程式碼預設文字顏色 */
-  --code-comment: #57606a;                       /* [修改] 註解 (comment) */
-  --code-keyword: #cf222e;                       /* [修改] 關鍵字 (keyword) */
-  --code-operator: #cf222e;                      /* [修改] 運算子 (operator) */
-  --code-string: #0a3069;                        /* [修改] 字串 (string) */
-  --code-number: #0550ae;                        /* [修改] 數字 (number) */
-  --code-function: #8250df;                      /* [修改] 函式 (function) */
-  --code-variable: #0550ae;                      /* [修改] 變數 (variable) */
-  --code-type: #8250df;                          /* [修改] 型別 (type) */
+  /* -- Code (Light Theme Palette) -- */
+  --code-bg: #f6f8fa;
+  --code-border-color: #d0d7de;
+  --code-cursor: #24292e;
+  --code-fg: #24292e;
+  --code-comment: #57606a;
+  --code-keyword: #cf222e;
+  --code-operator: #cf222e;
+  --code-string: #0a3069;
+  --code-number: #0550ae;
+  --code-function: #8250df;
+  --code-variable: #0550ae;
+  --code-type: #8250df;
 
   /* -- Mermaid -- */
-  --mermaid-node-color: #f6f8fa;                 /* [修改] 節點背景色 */
-  --mermaid-node-border: #d0d7de;                /* [修改] 節點邊框 */
-  --mermaid-node-stroke-width: 1px;
-  --mermaid-line-color: var(--primary-color);   /* [修改] 線條顏色使用主題綠 */
-  --mermaid-line-stroke-width: 2px;
-  --mermaid-edge-label-bg: #ffffff;             /* [修改] 標籤背景改為白色 */
-  --mermaid-font-size: 16px;
-  --mermaid-font-family: "Inter", "源石黑體月 R", "PingFang TC", "Microsoft JhengHei", sans-serif;
-  --mermaid-theme: default;                     /* [修改] Mermaid 主題改為預設 (淺色) */
+  --mermaid-theme: default;
+  --mermaid-node-color: #f6f8fa;
+  --mermaid-node-border: #d0d7de;
+  --mermaid-line-color: var(--primary-color);
+  --mermaid-edge-label-bg: #ffffff;
   --mermaid-contrast-color: #0969da;
 
- /* -- 其他 -- */
-  --select-text-bg-color: rgba(58, 122, 224, 0.4); /* [修改] 選取文字背景色，使用新的藍色 */
-  --select-text-font-color: #ffffff;            /* [修改] 選取文字顏色，白色在藍色背景上更清楚 */
-
-
-  /* -- 主要綠色按鈕 / 元件 (使用新的 primary-color) -- */
-  --primary-btn-border-color: var(--primary-color);
-  --primary-btn-text-color: var(--primary-color);
-  --meta-content-color: var(--primary-color);
-  --search-select-text-color: var(--primary-color);
-  --heading-char-color: var(--primary-color);
-
-
-  /* Font  */
-  --monospace: "JetBrains Mono", "Fira Mono", "Cascadia Mono", "Consolas", "Menlo", "Monaco", "Liberation Mono", "Courier New", monospace;
-  --font-latin: "Inter", "Helvetica", "Arial", "Aptos", sans-serif;
-  --font-cjk-primary: "源石黑體月 R";
-  --font-cjk-secondary: "Taipei Sans TC Beta";
-  --font-sans: var(--font-latin), var(--font-cjk-primary), var(--font-cjk-secondary), -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Noto Sans TC", "Noto Sans CJK TC", "PingFang TC", "Microsoft JhengHei", "Noto Sans", Arial, sans-serif, "Source Han Sans TC", "Source Han Sans";
-  --font-heading-latin: "Mulish", "Cambria", serif;
-  --font-heading-cjk: "源流明體月 M", "Noto Serif TC", "PMingLiU", serif;
-  --tbl-pad-x: 14px;
-  --tbl-pad-y: 10px;
-  --tbl-row-gap: 4px;  
+  /* -- Misc -- */
+  --select-text-bg-color: rgba(58, 122, 224, 0.4);
+  --select-text-font-color: #ffffff;
 }
 
-/* 1️⃣ 讓上下行有空氣感 */
-#write table {
-  border-spacing: 0 var(--tbl-row-gap);   /* 只針對垂直方向開縫；水平仍 0 */
-}
+/* ============================================================================
+   2. SPECIFIC OVERRIDES FOR DAY THEME
+   ============================================================================ */
+@layer theme, overrides;
 
-/* 2️⃣ 擴充左右內距，避免文字貼框線 */
-#write table th,
-#write table td {
-  padding: var(--tbl-pad-y) var(--tbl-pad-x) !important;  /* y x */
-  line-height: 1.4rem !important;         /* 行高稍微加大，整體更鬆 */
-  background-clip: padding-box;           /* 背景不碰到格線，可減少「貼線」錯覺 */
-}
-
-/* 3️⃣ 若仍覺左側過近，可再加一道「首行縮排」 */
-#write table th:first-child,
-#write table td:first-child {
-  padding-left: calc(var(--tbl-pad-x)) !important;  /* 只加首欄，更明顯 */
-}
-
-/******** 6. GLOBAL LAYOUT ***************************************************/
-@layer theme{
-  html, body { 
-    font-family:var(--font-sans);
-    font-size:13px;
-    font-weight:500;
-    line-height:1.5;
-    color:var(--text-color);
-    background:var(--bg-color);
-  }
-  #write {
-    font-family:var(--font-sans)!important;
-    background:var(--bg-color)!important;
-    max-width:860px;
-    margin:0 auto;
-    padding:30px;
-    font-weight:500;
-  }
-  @media(min-width:1400px){
-    #write{max-width:1024px}
-  }
-  @media(min-width:1800px){
-    #write{max-width:1200px}
-  }
-  #typora-sidebar, .pane-group {
-    background:var(--side-bar-bg-color)
-  }
-  .file-node-title {
-    color:var(--text-color)
-  }
-}
-#typora-sidebar,.pane-group{background:var(--side-bar-bg-color)}
-.file-node-title{color:var(--text-color)}
-}
-
-
-/******** 2. SIDEBAR *********************************************************/
-@layer theme{
-  .file-node-content.active,
-  .file-node-content.file-node-selected,
-  .file-node-content.file-node-active{
-    border-left:4px solid var(--active-file-border-color)!important;
-    background:var(--active-file-bg-color)!important;color:var(--text-color)!important;
-  }
-  .outline-item.active,.outline-item.active>a{
-    border-left:4px solid var(--active-file-border-color)!important;
-    background:var(--active-item-bg-color)!important;color:var(--text-color)!important;
-  }
-  .file-node-content:hover,
-  .outline-item:hover,
-  .outline-item:hover>a{
-    background:var(--item-hover-bg-color)!important;
-    color:var(--item-hover-text-color)!important;
-  }
-}
-
-/******** 3. HEADINGS ********************************************************/
 @layer theme {
-  h1, h2, h3, h4, h5, h6 {
-    margin: 1rem 0;
-    font-family:  var(--font-heading-latin), var(--font-heading-cjk);
-    font-weight: 400;
-    color: var(--text-color);
-  }
-  h1 {
-    padding-bottom: .15rem;
-    border-bottom: 1px solid var(--color-border-secondary);
-  }
-  h2 {
-    padding-bottom: .15rem;
-    border-bottom: 1px solid var(--color-border-secondary);
-  }
-  
-  h6 { color: var(--text-dimmed); } /* [修改] 原本是 #8b949e，改用變數 */
-
-  .md-heading .md-inline-head-level,
-  .md-heading .md-before,
-  .md-heading .md-after,
-  .md-heading .md-marker,
-  .md-inline-head-level,
-  .md-inline-heading-label,
-  .md-headline-label,
-  #write .typora-inline-heading-label { display: none !important; }
-}
-
-/******** 4. BODY TEXT & LISTS ***********************************************/
-@layer theme{
-  p, table, li {
-    font-size: 1.25rem; 
-    line-height: 1.5; 
-    color: var(--text-color); 
-    font-weight: 500;
-  }
-  #write ol, #write ul {
-    padding-left: 2rem; 
-    font-weight: 500;
-  }
-}
-
-/******** 5. LINKS ***********************************************************/
-@layer theme{
-  a{color:var(--link-color);text-decoration:none}
-  a:hover{text-decoration:underline}
-  .md-image>.md-meta,.md-url{color:var(--link-alt-color)!important}
-}
-
-/******** 6. CODE BLOCKS *****************************************************/
-@layer theme{
-  code,tt,pre{font-family:var(--monospace);font-size:1.05rem;
-              background:var(--code-bg);border:1px solid var(--code-border-color);
-              border-radius:6px;padding:.18rem .4rem .22rem;color:var(--code-fg)}
-  .cm-s-inner.CodeMirror,
-  .cm-s-inner .CodeMirror-gutters{
-    background:var(--code-bg)!important;color:var(--code-fg);
-    font-style:normal;border:1px solid var(--code-border-color)}
-  .CodeMirror.cm-s-inner div.CodeMirror-cursor{
-    border-left:2px solid var(--code-cursor)}
-  .cm-s-inner .CodeMirror-linenumber{color:#5a5a5a;font-style:normal}
-  .cm-s-inner span{font-style:normal;color:var(--code-fg)!important}
-  .cm-s-inner span.cm-comment{color:var(--code-comment)!important}
-  .cm-s-inner span.cm-keyword{color:var(--code-keyword)!important}
-  .cm-s-inner span.cm-operator{color:var(--code-operator)!important}
+  /* -- CodeMirror Syntax Highlighting (Light) -- */
+  .cm-s-inner span.cm-comment { color: var(--code-comment) !important; }
+  .cm-s-inner span.cm-keyword { color: var(--code-keyword) !important; }
+  .cm-s-inner span.cm-operator { color: var(--code-operator) !important; }
   .cm-s-inner span.cm-string,
   .cm-s-inner span.cm-string-2,
-  .cm-s-inner span.cm-quote{color:var(--code-string)!important}
-  .cm-s-inner span.cm-number{color:var(--code-number)!important}
+  .cm-s-inner span.cm-quote { color: var(--code-string) !important; }
+  .cm-s-inner span.cm-number { color: var(--code-number) !important; }
   .cm-s-inner span.cm-def,
-  .cm-s-inner span.cm-function{color:var(--code-function)!important}
-  .cm-s-inner span.cm-variable{color:var(--code-variable)!important}
+  .cm-s-inner span.cm-function { color: var(--code-function) !important; }
+  .cm-s-inner span.cm-variable { color: var(--code-variable) !important; }
   .cm-s-inner span.cm-type,
-  .cm-s-inner span.cm-variable-3{color:var(--code-type)!important}
+  .cm-s-inner span.cm-variable-3 { color: var(--code-type) !important; }
   .cm-s-inner span.cm-atom,
-  .cm-s-inner span.cm-meta{color:var(--code-comment)!important}
-}
+  .cm-s-inner span.cm-meta { color: var(--code-comment) !important; }
 
-/******** 7. SELECTION *******************************************************/
-body ::selection,#write ::selection{
-  background:var(--select-text-bg-color)!important;
-  color:var(--select-text-font-color)!important}
-.cm-s-inner .CodeMirror-selected,
-.cm-s-inner .CodeMirror-selectedtext{
-  background:var(--select-text-bg-color)!important;
-  color:var(--select-text-font-color)!important}
-
-/******** 8. MERMAID *********************************************************/
-@layer overrides{
-  /* 文字 */
-  svg[id^="mermaidChart"] text,.mermaid text{
-    fill:var(--text-color)!important;
-    font-family:var(--mermaid-font-family)!important;
-    font-size:var(--mermaid-font-size)!important}
-
-  /* 節點 */
-  svg[id^="mermaidChart"] .node rect,
-  svg[id^="mermaidChart"] .node circle,
-  svg[id^="mermaidChart"] .node ellipse,
-  svg[id^="mermaidChart"] .node polygon,
-  svg[id^="mermaidChart"] g.classGroup rect{
-    fill:var(--mermaid-node-color)!important;
-    stroke:var(--mermaid-node-border)!important;
-    stroke-width:var(--mermaid-node-stroke-width)!important;
-    rx:4px;ry:4px}
-
-  /* 線條 / 箭頭 */
-  svg[id^="mermaidChart"] .edgePath .path,
-  svg[id^="mermaidChart"] .messageLine0,
-  svg[id^="mermaidChart"] .messageLine1,
-  svg[id^="mermaidChart"] line.actor-line,
-  svg[id^="mermaidChart"] path.relation,
-  .mermaid .grid .tick line{
-    stroke:var(--mermaid-line-color)!important;
-    stroke-width:var(--mermaid-line-stroke-width)!important}
-  svg[id^="mermaidChart"] .arrowheadPath{
-    fill:var(--mermaid-line-color)!important;stroke:none!important}
-
-  /* Edge-label：新 DOM */
-  svg[id^="mermaidChart"] .edgeLabel rect{
-    fill:var(--mermaid-edge-label-bg)!important;rx:4px;ry:4px}
-
-  /* Edge-label：舊 DOM */
-  svg[id^="mermaidChart"] .edgeLabel text,
-  svg[id^="mermaidChart"] .edgeLabel tspan{
-    fill: var(--text-color) !important; /* [修改] 原本是 #e6edf3，改用主要文字顏色變數 */
-    paint-order: stroke;
-    stroke: var(--mermaid-edge-label-bg) !important; /* [修改] 背景模糊效果使用新的背景變數 */
-    stroke-width: 4px;
-    stroke-linejoin: round;
-    font-size:calc(var(--mermaid-font-size)*.95)!important
-
-  /* Gantt / Pie */
-  svg[id^="mermaidChart"] .today{
-    stroke:var(--mermaid-contrast-color)!important;
-    stroke-width:var(--mermaid-line-stroke-width)!important}
-  svg[id^="mermaidChart"] g path{stroke:var(--text-color)}
-  .legend text{fill:var(--text-color)}
-
-  /* ── 追加：所有舊 #f9826c→#55c95f 的元件 ───────────── */
-  /* 1️⃣ 文字變數已在 :root 改成 #55c95f，以下針對個別選擇器補強 */
-  #md-notification .ty-enter-mode-warning-header{color:#55c95f;}
-  a.reversefootnote{color:#55c95f;}
-  .file-node-content .fa-caret-right,
-  .file-node-content .fa-caret-down{color:#1c9c27;}
-  .info-panel-tab-border{background-color:#55c95f !important;}
-  .md-image-btn.selected,
-  .md-image-btn:hover,
-  .md-image-pick-file-btn:hover,
-  .md-image-input-src-btn:hover{color:#55c95f !important;}
-  .md-inline-math script{color:#55c95f;}
-
-  /* ── Heading Size Override ─────────────────────────────── */
-  #write h1 { font-size: 3.0rem !important; }  /* 約 42 px */
-  #write h2 { font-size: 2.4rem !important; }  /* 約 32 px */
-  #write h3 { font-size: 1.9rem !important; }  /* 約 25 px */
-  #write h4 { font-size: 1.6rem !important; }  /* 約 21 px */
-  #write h5 { font-size: 1.3rem !important; }  /* 約 17 px */
-  #write h6 { font-size: 1.1rem !important; }  /* 約 14 px */
-}
-
-/******** 9. TABLES & BLOCKQUOTE *********************************************/
-@layer theme{
-  table{width:100%;border-collapse:collapse;margin-bottom:20px}
-  table th,table td{
-    border:1px solid var(--color-border-secondary); /* [修改] 原本是 #324560，改用邊框變數 */
-    padding:10px 16px;line-height:1.25rem;
-    font-size:1.15rem;font-weight:500}
-  thead{
-    background: #f6f8fa; /* [修改] 表格頭部背景，使用淺灰色 */
-    color:var(--text-color)}
-  blockquote{border-left:.25rem solid var(--primary-color);padding:0 1rem;
-              margin:0 0 1rem;color: var(--text-dimmed)} /* [修改] 原本是 #8b949e，改用變數 */
-}
-
-/******** 10. SCROLLBAR ******************************************************/
-@layer theme{
-  ::-webkit-scrollbar-thumb{border-radius:10px;background:#c1c1c1} /* [修改] 捲動條顏色改為淺灰色 */
-}
-
-/******** 11. UI ACTIVE ELEMENTS *********************************************/
-@layer theme{
-  /* 偏好設定選單樣式 */
-  .nav-group-item {
-    color: var(--text-color);
-    background-color: transparent;
-    transition: all 0.2s ease;
+  /* -- Tables -- */
+  thead {
+    background: #f6f8fa;
+  }
+  tbody tr:nth-child(even) {
+    background-color: #f6f8fa; /* Zebra stripes for light theme */
   }
 
-  .nav-group-item:hover {
-    background-color: var(--item-hover-bg-color);
-    color: var(--item-hover-text-color);
+  /* -- Scrollbar -- */
+  ::-webkit-scrollbar-thumb {
+    background: #c1c1c1;
   }
 
+  /* -- UI Active Elements -- */
   .nav-group-item.active {
-    border-bottom: 2px solid var(--primary-color) !important;
-    background-color: transparent !important; /* [修改] Active 狀態的背景改為透明，讓底線更突出 */
-    color: var(--primary-color) !important;  /* [修改] Active 狀態的文字顏色改為主題綠 */
-  }
-
-  /* 搜尋選項按鈕樣式 */
-  .searchpanel-search-option-btn {
-    color: var(--text-color);
-    border: 1px solid transparent;
-  }
-
-  .searchpanel-search-option-btn:hover {
-    color: var(--item-hover-text-color);
-    border-color: var(--primary-color);
-    background-color: var(--item-hover-bg-color);
-  }
-
-  .searchpanel-search-option-btn.active {
+    background-color: transparent !important;
     color: var(--primary-color) !important;
-    background-color: var(--active-item-bg-color) !important;
-  }}
+  }
+}
 
-/* ============================ End of Theme · Last updated: 2025-06-25 v1 ============================ */
+@layer overrides {
+    /* -- Mermaid Edge Label -- */
+    svg[id^\="mermaidChart"] .edgeLabel text,
+    svg[id^\="mermaidChart"] .edgeLabel tspan {
+        fill: var(--text-color) !important;
+        stroke: var(--mermaid-edge-label-bg) !important;
+    }
+
+    /* -- YAML Front Matter -- */
+    pre.md-meta-block {
+        background-color: #fbfbfb;
+        border-bottom: 1px solid #e0e0e0;
+    }
+    .md-meta-hr {
+        color: #d0d7de;
+    }
+}
