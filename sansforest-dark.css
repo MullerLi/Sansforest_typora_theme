@@ -1,0 +1,364 @@
+/* ============================================================================
+   Typora Theme – Sansforest Dark (Modern Swiss Typography Edition)
+   ============================================================================ */
+
+/* --------- Fonts Imports / Declarations --------- */
+@font-face {
+  font-family: "Satoshi";
+  src: url("./sansforest/Satoshi-Regular.otf") format("opentype");
+  font-weight: 400;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Satoshi";
+  src: url("./sansforest/Satoshi-Bold.otf") format("opentype");
+  font-weight: 700;
+  font-style: normal;
+}
+@font-face {
+  font-family: "IBM Plex Sans TC";
+  src: url("./sansforest/IBMPlexSansTC-Regular.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+}
+@font-face {
+  font-family: "IBM Plex Sans TC";
+  src: url("./sansforest/IBMPlexSansTC-Bold.ttf") format("truetype");
+  font-weight: 700;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Lora";
+  src: url("./sansforest/Lora-Regular.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Lora";
+  src: url("./sansforest/Lora-Italic.ttf") format("truetype");
+  font-weight: 400;
+  font-style: italic;
+}
+
+:root {
+  /* —— Swiss Typography Fonts —— */
+  --font-latin: "Satoshi", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
+  --font-cjk-primary: "IBM Plex Sans TC", "Noto Sans TC", "PingFang TC", "Microsoft JhengHei";
+  --font-sans: var(--font-latin), var(--font-cjk-primary), sans-serif;
+  
+  --font-serif-latin: "Lora", "Times New Roman", serif;
+  --font-serif-cjk: "Noto Serif TC", "PMingLiU", serif;
+  --font-serif: var(--font-serif-latin), var(--font-serif-cjk), serif;
+  
+  --monospace: "JetBrains Mono", "Fira Code", "Menlo", "Consolas", monospace;
+
+  /* —— Color Palette (Dark) —— */
+  --bg-color: #0B0C0D; /* Extremely deep void */
+  --side-bar-bg-color: #121415;
+  
+  /* Text */
+  --text-color: #D1D5DA;
+  --text-dimmed: #8B949E;
+  
+  /* UI States */
+  --item-hover-bg-color: #1C2128;
+  --item-hover-text-color: #F0F6FC;
+  --active-file-bg-color: #1C2128;
+  --active-file-border-color: #9DB3A2; /* Sage Green accent */
+  --active-item-bg-color: #1C2128;
+  --primary-color: #9DB3A2;
+
+  /* Links & Accents */
+  --link-color: #9DB3A2; /* Sage green */
+  --link-alt-color: #9DB3A2;
+  --color-border-secondary: #30363D;
+
+  /* —— Code —— */
+  --code-bg: #161B22;
+  --code-border-color: #21262D;
+  --code-cursor: #FFFFFF;
+  --code-fg: #C9D1D9;
+  --code-comment: #8B949E;
+  --code-keyword: #FF7B72;
+  --code-operator: #C9D1D9;
+  --code-string: #A5D6FF;
+  --code-number: #79C0FF;
+  --code-function: #D2A8FF;
+  --code-variable: #C9D1D9;
+  --code-type: #FF7B72;
+  --code-atom: #79C0FF;
+  --code-meta: #8B949E;
+
+  /* —— Mermaid (Dark Theme Adjusted) —— */
+  --mermaid-node-color: #161B22;
+  --mermaid-node-border: #30363D;
+  --mermaid-node-stroke-width: 2px;
+  --mermaid-line-color: #7EE787;
+  --mermaid-line-stroke-width: 2px;
+  --mermaid-edge-label-bg: #1E2E28;
+  --mermaid-font-size: 16px;
+  --mermaid-font-family: var(--font-sans);
+  --mermaid-theme: dark;
+  --mermaid-contrast-color: #58A6FF;
+
+  /* —— Selection —— */
+  --select-text-bg-color: rgba(157, 179, 162, 0.3);
+  --select-text-font-color: inherit;
+  
+  /* —— Layout —— */
+  --content-max-width: 1200px; /* Wide view to prevent frequent wrapping */
+  
+  /* Tables */
+  --tbl-pad-x: 14px;
+  --tbl-pad-y: 10px;
+  --tbl-row-gap: 4px;
+}
+
+/* ============================================================================ */
+/* Base Setup & Typographic Rules */
+/* ============================================================================ */
+
+html, body {
+  font-family: var(--font-sans);
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.6;
+  color: var(--text-color);
+  background: var(--bg-color);
+  letter-spacing: -0.01em; 
+}
+
+#write {
+  max-width: var(--content-max-width) !important;
+  margin: 0 auto;
+  padding: 40px 60px;
+  font-family: var(--font-sans) !important;
+  background: var(--bg-color) !important;
+  color: var(--text-color);
+}
+
+/* ============================================================================ */
+/* UI Elements & Overrides (Input, Button, Sidebar) */
+/* ============================================================================ */
+
+input, textarea, select, button, .btn {
+  font-family: var(--font-sans);
+  font-size: 1rem;
+  font-weight: 500;
+}
+
+.sidebar, .file-node-title, .outline-item, .top-title, .context-menu {
+  font-family: var(--font-sans);
+  font-weight: 500;
+}
+
+#typora-sidebar, .pane-group {
+  background: var(--side-bar-bg-color);
+  border-right: 1px solid var(--color-border-secondary);
+}
+
+.file-node-title { color: var(--text-color); }
+
+.file-node-content.active,
+.file-node-content.file-node-selected,
+.file-node-content.file-node-active,
+.outline-item.active,
+.outline-item.active > a {
+  border-left: 4px solid var(--active-file-border-color) !important;
+  background: var(--active-file-bg-color) !important;
+  color: var(--text-color) !important;
+}
+
+.file-node-content:hover,
+.outline-item:hover,
+.outline-item:hover > a {
+  background: var(--item-hover-bg-color) !important;
+  color: var(--item-hover-text-color) !important;
+}
+
+/* ============================================================================ */
+/* Headings (Strict, Grid-aligned, Monochromatic) */
+/* ============================================================================ */
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-sans);
+  font-weight: 500;
+  color: #EEEEEE;
+  margin-top: 2.5rem;
+  margin-bottom: 1.2rem;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+}
+
+h1 { font-size: 2.8rem; border-bottom: 2px solid #EEEEEE; padding-bottom: 0.5rem; margin-top: 3rem; }
+h2 { font-size: 2.2rem; border-bottom: 1px solid var(--color-border-secondary); padding-bottom: 0.3rem; }
+h3 { font-size: 1.6rem; }
+h4 { font-size: 1.3rem; }
+h5 { font-size: 1.1rem; }
+h6 { font-size: 1rem; color: var(--text-dimmed); font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; }
+
+.md-heading .md-inline-head-level,
+.md-heading .md-before,
+.md-heading .md-after,
+.md-heading .md-marker,
+.md-inline-head-level { display: none !important; }
+
+/* ============================================================================ */
+/* Paragraphs, Lists & Blockquotes */
+/* ============================================================================ */
+
+p, li {
+  font-size: 1.125rem;
+  line-height: 1.7;
+  color: var(--text-color);
+  margin-bottom: 1.2rem;
+}
+
+#write ol, #write ul {
+  padding-left: 2.5rem;
+  margin-bottom: 1.5rem;
+}
+
+/* Swiss Style Blockquote: Clear distinct serif or precision sans */
+blockquote {
+  font-family: var(--font-serif);
+  font-size: 1.25rem;
+  line-height: 1.8;
+  color: #A0A0A0;
+  margin: 2rem 0;
+  padding: 1.2rem 1.7rem;
+  border-left: 4px solid var(--primary-color);
+  background: rgba(48, 54, 61, 0.4);
+}
+
+/* ============================================================================ */
+/* Links & Selections */
+/* ============================================================================ */
+
+a {
+  color: var(--link-color);
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  transition: border-bottom 0.2s ease;
+}
+a:hover {
+  border-bottom: 1px solid var(--link-color);
+}
+
+::selection, .cm-s-inner .CodeMirror-selected, .cm-s-inner .CodeMirror-selectedtext {
+  background: var(--select-text-bg-color) !important;
+  color: var(--select-text-font-color) !important;
+}
+
+/* ============================================================================ */
+/* Tables */
+/* ============================================================================ */
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 2rem 0;
+  font-size: 1rem;
+}
+table th, table td {
+  border: 1px solid var(--color-border-secondary);
+  padding: var(--tbl-pad-y) var(--tbl-pad-x);
+  text-align: left;
+  background-clip: padding-box;
+}
+table th {
+  font-weight: 600;
+  border-bottom: 2px solid #EEEEEE;
+  color: #EEEEEE;
+  background: rgba(48, 54, 61, 0.4);
+}
+table tr:hover td {
+  background: rgba(255,255,255,0.03);
+}
+
+/* ============================================================================ */
+/* Code Elements */
+/* ============================================================================ */
+
+code, tt, pre {
+  font-family: var(--monospace);
+  font-size: 0.95rem;
+  background: var(--code-bg);
+  border: 1px solid var(--code-border-color);
+  border-radius: 4px;
+  padding: 0.2rem 0.4rem;
+  color: var(--code-fg);
+}
+
+pre.md-fences {
+  padding: 1rem;
+  margin: 1.5rem 0;
+  background: var(--code-bg);
+}
+
+.cm-s-inner.CodeMirror,
+.cm-s-inner .CodeMirror-gutters {
+  background: var(--code-bg) !important;
+  color: var(--code-fg);
+  border: 1px solid var(--code-border-color);
+}
+.CodeMirror-cursor, .cm-s-inner .CodeMirror-cursor { border-left: 2px solid var(--code-cursor) !important; }
+
+.cm-s-inner span { color: var(--code-fg) !important; }
+.cm-s-inner span.cm-comment { color: var(--code-comment) !important; }
+.cm-s-inner span.cm-keyword { color: var(--code-keyword) !important; }
+.cm-s-inner span.cm-operator { color: var(--code-operator) !important; }
+.cm-s-inner span.cm-string { color: var(--code-string) !important; }
+.cm-s-inner span.cm-number { color: var(--code-number) !important; }
+.cm-s-inner span.cm-function { color: var(--code-function) !important; }
+.cm-s-inner span.cm-variable { color: var(--code-variable) !important; }
+.cm-s-inner span.cm-type { color: var(--code-type) !important; }
+
+/* ============================================================================ */
+/* Mermaid Integration */
+/* ============================================================================ */
+
+svg[id^="mermaidChart"] text, .mermaid text {
+  fill: var(--text-color) !important;
+  font-family: var(--mermaid-font-family) !important;
+  font-size: var(--mermaid-font-size) !important;
+}
+
+svg[id^="mermaidChart"] .node rect,
+svg[id^="mermaidChart"] .node circle,
+svg[id^="mermaidChart"] .node ellipse,
+svg[id^="mermaidChart"] .node polygon,
+svg[id^="mermaidChart"] g.classGroup rect {
+  fill: var(--mermaid-node-color) !important;
+  stroke: var(--mermaid-node-border) !important;
+  stroke-width: var(--mermaid-node-stroke-width) !important;
+  rx: 4px; ry: 4px;
+}
+
+svg[id^="mermaidChart"] .edgePath .path,
+svg[id^="mermaidChart"] .messageLine0,
+svg[id^="mermaidChart"] .messageLine1,
+svg[id^="mermaidChart"] line.actor-line,
+svg[id^="mermaidChart"] path.relation,
+.mermaid .grid .tick line {
+  stroke: var(--mermaid-line-color) !important;
+  stroke-width: var(--mermaid-line-stroke-width) !important;
+}
+
+svg[id^="mermaidChart"] .arrowheadPath {
+  fill: var(--mermaid-line-color) !important; stroke: none !important;
+}
+
+svg[id^="mermaidChart"] .edgeLabel rect {
+  fill: var(--mermaid-edge-label-bg) !important; rx: 4px; ry: 4px;
+}
+
+/* ============================================================================ */
+/* Math & Miscellaneous UI Fixes */
+/* ============================================================================ */
+
+/* Prevent math hover bounding boxes */
+.mathjax-block:hover, .typora-math:hover, .md-math:hover, .md-math-block:hover {
+  background: none !important; box-shadow: none !important;
+}
+hr { border: 0; height: 1px; background: var(--color-border-secondary); margin: 3rem 0; }
