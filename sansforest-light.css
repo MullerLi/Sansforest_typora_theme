@@ -4,18 +4,6 @@
 
 /* --------- Fonts Imports / Declarations --------- */
 @font-face {
-  font-family: "Satoshi";
-  src: url("./sansforest/Satoshi-Regular.otf") format("opentype");
-  font-weight: 400;
-  font-style: normal;
-}
-@font-face {
-  font-family: "Satoshi";
-  src: url("./sansforest/Satoshi-Bold.otf") format("opentype");
-  font-weight: 700;
-  font-style: normal;
-}
-@font-face {
   font-family: "IBM Plex Sans TC";
   src: url("./sansforest/IBMPlexSansTC-Regular.ttf") format("truetype");
   font-weight: 400;
@@ -42,7 +30,7 @@
 
 :root {
   /* —— Swiss Typography Fonts —— */
-  --font-latin: "Satoshi", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
+  --font-latin: "IBM Plex Sans TC", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
   --font-cjk-primary: "IBM Plex Sans TC", "Noto Sans TC", "PingFang TC", "Microsoft JhengHei";
   --font-sans: var(--font-latin), var(--font-cjk-primary), sans-serif;
   
@@ -120,12 +108,11 @@
 
 html, body {
   font-family: var(--font-sans);
-  font-size: 16px;
-  font-weight: 400;
-  line-height: 1.6;
+  font-size: 13px;
+  font-weight: 500;
+  line-height: 1.5;
   color: var(--text-color);
   background: var(--bg-color);
-  letter-spacing: -0.01em; 
 }
 
 #write {
@@ -182,20 +169,17 @@ input, textarea, select, button, .btn {
 
 h1, h2, h3, h4, h5, h6 {
   font-family: var(--font-sans);
-  font-weight: 500;
+  font-weight: 400;
   color: #111111;
-  margin-top: 2.5rem;
-  margin-bottom: 1.2rem;
-  letter-spacing: -0.02em;
-  line-height: 1.2;
+  margin: 1rem 0;
 }
 
-h1 { font-size: 2.8rem; border-bottom: 2px solid #111111; padding-bottom: 0.5rem; margin-top: 3rem; }
-h2 { font-size: 2.2rem; border-bottom: 1px solid var(--color-border-secondary); padding-bottom: 0.3rem; }
-h3 { font-size: 1.6rem; }
-h4 { font-size: 1.3rem; }
-h5 { font-size: 1.1rem; }
-h6 { font-size: 1rem; color: var(--text-dimmed); font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; }
+h1 { font-size: 3.0rem; border-bottom: 1px solid var(--color-border-secondary); padding-bottom: 0.15rem; }
+h2 { font-size: 2.4rem; border-bottom: 1px solid var(--color-border-secondary); padding-bottom: 0.15rem; }
+h3 { font-size: 1.9rem; }
+h4 { font-size: 1.6rem; }
+h5 { font-size: 1.3rem; }
+h6 { font-size: 1.1rem; color: var(--text-dimmed); font-weight: 600; text-transform: uppercase; }
 
 .md-heading .md-inline-head-level,
 .md-heading .md-before,
@@ -208,15 +192,15 @@ h6 { font-size: 1rem; color: var(--text-dimmed); font-weight: 600; text-transfor
 /* ============================================================================ */
 
 p, li {
-  font-size: 1.125rem;
-  line-height: 1.7;
+  font-size: 1.25rem;
+  line-height: 1.5;
   color: var(--text-color);
-  margin-bottom: 1.2rem;
+  font-weight: 500;
 }
 
 #write ol, #write ul {
-  padding-left: 2.5rem;
-  margin-bottom: 1.5rem;
+  padding-left: 2rem;
+  font-weight: 500;
 }
 
 /* Swiss Style Blockquote: Clear distinct serif or precision sans */
