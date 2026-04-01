@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sansforest Theme Preview</title>
+  <link id="theme-stylesheet" rel="stylesheet" href="./sansforest-light.css">
+  <style>
+    :root {
+      color-scheme: light dark;
+    }
+
+    body {
+      margin: 0;
+      padding: 88px 0 40px;
+    }
+
+    .preview-toolbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 16px 24px;
+      background: color-mix(in srgb, var(--bg-color, #fafafa) 90%, transparent);
+      border-bottom: 1px solid var(--color-border-secondary, #c7c7cc);
+      backdrop-filter: blur(10px);
+      box-sizing: border-box;
+    }
+
+    .preview-toolbar__title {
+      font-size: 0.95rem;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+
+    .preview-toolbar__controls {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .preview-toolbar button {
+      appearance: none;
+      border: 1px solid var(--color-border-secondary, #c7c7cc);
+      background: var(--code-bg, #f2f2f7);
+      color: var(--text-color, #2c2c2e);
+      padding: 8px 14px;
+      cursor: pointer;
+      font-size: 0.95rem;
+      line-height: 1;
+    }
+
+    .preview-toolbar button.is-active {
+      border-color: var(--primary-color, #8ea394);
+      box-shadow: inset 0 0 0 1px var(--primary-color, #8ea394);
+    }
+
+    .preview-toolbar__hint {
+      font-size: 0.9rem;
+      color: var(--text-dimmed, #8e8e93);
+      white-space: nowrap;
+    }
+
+    .preview-note {
+      margin: 0 0 2rem;
+      padding: 1rem 1.2rem;
+      background: var(--code-bg, #f2f2f7);
+      border-left: 4px solid var(--primary-color, #8ea394);
+      color: var(--text-color, #2c2c2e);
+    }
+
+    .preview-note strong {
+      display: inline-block;
+      margin-right: 0.4rem;
+    }
+
+    @media (max-width: 720px) {
+      body {
+        padding-top: 120px;
+      }
+
+      .preview-toolbar {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+
+      .preview-toolbar__hint {
+        white-space: normal;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="preview-toolbar">
+    <div class="preview-toolbar__title">Sansforest Theme Preview</div>
+    <div class="preview-toolbar__controls">
+      <button type="button" data-theme="light">Light CSS</button>
+      <button type="button" data-theme="dark">Dark CSS</button>
+      <span class="preview-toolbar__hint" id="theme-status">目前：Light</span>
+    </div>
+  </div>
+
+  <div id="write">
+    <p class="preview-note">
+      <strong>測試重點</strong>
+      這頁特別放了 `H1-H6` 與下一段落的連續組合，方便直接確認標題下方間距，以及正文是否已切換為 `Blix`。
+    </p>
+
+    <h1>Heading 1 標題一</h1>
+    <p>這是一段緊接在 H1 後面的文字，用來檢查標題與下一段的距離是否已經收斂，同時也能確認 `Blix` 的中文字型是否正確載入。</p>
+
+    <h2>Heading 2 標題二</h2>
+    <p>Sansforest 的主體設計偏向乾淨、寬版而且具有秩序感，所以這裡刻意保留較大的字級，再把段落間距收得更精準。</p>
+
+    <h3>Heading 3 標題三</h3>
+    <p>英數混排測試：Blix 2026 / Typography / Markdown / Typora / CSS Preview。</p>
+
+    <h4>Heading 4 標題四</h4>
+    <p>如果你主要想看字重差異，這段可以留意繁中在一般正文中的筆畫、留白和節奏。</p>
+
+    <h5>Heading 5 標題五</h5>
+    <p>也建議順便檢查列表、引用、表格與程式碼區塊是否仍與新字體搭配自然。</p>
+
+    <h6>Heading 6 標題六</h6>
+    <p>這段就是最小標題後的段落，通常最容易看出標題底部與內文頂部是不是太鬆。</p>
+
+    <p>一般段落測試：山霧、街道、筆記、版面、節奏與層級，這些字可以快速看出中文無襯線字體在不同畫面密度下的穩定性。</p>
+
+    <blockquote>
+      設計不是把東西排整齊而已，而是讓層級、節奏與閱讀情緒同時成立。
+    </blockquote>
+
+    <ul>
+      <li>清單項目一：確認 `Blix` 在列表中是否仍清楚。</li>
+      <li>清單項目二：檢查縮排與行高是否自然。</li>
+      <li>清單項目三：觀察亮暗主題切換後的對比。</li>
+    </ul>
+
+    <ol>
+      <li>先看 H1 到 H6 的下方距離。</li>
+      <li>再看正文中文是否已不是 IBM Plex Sans TC。</li>
+      <li>最後確認表格與程式碼是否正常。</li>
+    </ol>
+
+    <h2>Inline Styles</h2>
+    <p>你也可以測試 <strong>粗體文字</strong>、<em>斜體文字</em>、<a href="#">連結樣式</a>、以及 <code>inline code</code> 的整體協調性。</p>
+
+    <pre><code>const preview = {
+  theme: "sansforest",
+  font: "Blix",
+  check: ["heading spacing", "body font", "light/dark"]
+};</code></pre>
+
+    <h2>Table</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>項目</th>
+          <th>內容</th>
+          <th>狀態</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>正文字體</td>
+          <td>Blix</td>
+          <td>待目視確認</td>
+        </tr>
+        <tr>
+          <td>標題間距</td>
+          <td>Heading 下方縮小</td>
+          <td>待目視確認</td>
+        </tr>
+        <tr>
+          <td>主題切換</td>
+          <td>Light / Dark</td>
+          <td>可即時切換</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <script>
+    const stylesheet = document.getElementById("theme-stylesheet");
+    const status = document.getElementById("theme-status");
+    const buttons = Array.from(document.querySelectorAll("[data-theme]"));
+    const storageKey = "sansforest-preview-theme";
+
+    function setTheme(theme) {
+      const safeTheme = theme === "dark" ? "dark" : "light";
+      stylesheet.href = safeTheme === "dark" ? "./sansforest-dark.css" : "./sansforest-light.css";
+      status.textContent = `目前：${safeTheme === "dark" ? "Dark" : "Light"}`;
+      buttons.forEach((button) => {
+        button.classList.toggle("is-active", button.dataset.theme === safeTheme);
+      });
+      localStorage.setItem(storageKey, safeTheme);
+    }
+
+    buttons.forEach((button) => {
+      button.addEventListener("click", () => setTheme(button.dataset.theme));
+    });
+
+    setTheme(localStorage.getItem(storageKey));
+  </script>
+</body>
+</html>

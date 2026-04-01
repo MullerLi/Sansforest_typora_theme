@@ -4,15 +4,29 @@
 
 /* --------- Fonts Imports / Declarations --------- */
 @font-face {
-  font-family: "IBM Plex Sans TC";
-  src: url("./sansforest/IBMPlexSansTC-Regular.ttf") format("truetype");
+  font-family: "Blix";
+  src: url("./sansforest/Blix-Regular.otf") format("opentype");
   font-weight: 400;
   font-style: normal;
 }
 
 @font-face {
-  font-family: "IBM Plex Sans TC";
-  src: url("./sansforest/IBMPlexSansTC-Bold.ttf") format("truetype");
+  font-family: "Blix";
+  src: url("./sansforest/Blix-Medium.otf") format("opentype");
+  font-weight: 500;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Blix";
+  src: url("./sansforest/Blix-SemiBold.otf") format("opentype");
+  font-weight: 600;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Blix";
+  src: url("./sansforest/Blix-Bold.otf") format("opentype");
   font-weight: 700;
   font-style: normal;
 }
@@ -66,7 +80,7 @@
   /* —— Swiss Typography Fonts —— */
   --font-heading: "Heading Mixed", sans-serif;
   --font-latin: "Plus Jakarta Sans", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
-  --font-cjk-primary: "IBM Plex Sans TC", "Noto Sans TC", "PingFang TC", "Microsoft JhengHei", sans-serif;
+  --font-cjk-primary: "Blix", "Noto Sans TC", "PingFang TC", "Microsoft JhengHei", sans-serif;
   --font-sans: var(--font-latin), var(--font-cjk-primary);
 
   --font-serif-latin: "Lora", "Times New Roman", serif;
@@ -241,7 +255,7 @@ h6 {
   font-family: "Heading Mixed" !important;
   font-weight: 400;
   color: var(--text-color);
-  margin: 1rem 0;
+  margin: 1.1rem 0 0.4rem;
 }
 
 h1 {
@@ -281,6 +295,15 @@ h6 {
 .md-heading .md-marker,
 .md-inline-head-level {
   display: none !important;
+}
+
+#write h1 + p,
+#write h2 + p,
+#write h3 + p,
+#write h4 + p,
+#write h5 + p,
+#write h6 + p {
+  margin-top: 0.4rem;
 }
 
 /* ============================================================================ */
