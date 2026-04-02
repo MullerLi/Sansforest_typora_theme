@@ -116,7 +116,7 @@
   --font-latin: "Plus Jakarta Sans", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
   --font-cjk-regular: "Blix Regular", "Noto Sans TC", "PingFang TC", "Microsoft JhengHei", sans-serif;
   --font-sans: var(--font-latin), var(--font-cjk-regular);
-  
+
   --font-sans-medium: var(--font-latin), "Blix Medium", "Noto Sans TC", "PingFang TC", "Microsoft JhengHei", sans-serif;
   --font-sans-semibold: var(--font-latin), "Blix SemiBold", "Noto Sans TC", "PingFang TC", "Microsoft JhengHei", sans-serif;
   --font-sans-bold: var(--font-latin), "Blix Bold", "Noto Sans TC", "PingFang TC", "Microsoft JhengHei", sans-serif;
@@ -355,12 +355,14 @@ li {
   font-weight: 400;
 }
 
-strong, b {
+strong,
+b {
   font-family: var(--font-sans-bold);
   font-weight: normal;
 }
 
-em, i {
+em,
+i {
   font-family: "Libre Baskerville Italic", var(--font-serif-cjk);
   font-style: normal;
 }
