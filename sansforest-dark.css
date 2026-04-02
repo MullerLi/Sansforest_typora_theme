@@ -4,94 +4,132 @@
 
 /* --------- Fonts Imports / Declarations --------- */
 @font-face {
-  font-family: "Blix";
+  font-family: "Blix Regular";
   src: url("./sansforest/Blix-Regular.otf") format("opentype");
-  font-weight: 400;
+  font-weight: normal;
   font-style: normal;
 }
 
 @font-face {
-  font-family: "Blix";
+  font-family: "Blix Medium";
   src: url("./sansforest/Blix-Medium.otf") format("opentype");
-  font-weight: 500;
+  font-weight: normal;
   font-style: normal;
 }
 
 @font-face {
-  font-family: "Blix";
+  font-family: "Blix SemiBold";
   src: url("./sansforest/Blix-SemiBold.otf") format("opentype");
-  font-weight: 600;
+  font-weight: normal;
   font-style: normal;
 }
 
 @font-face {
-  font-family: "Blix";
+  font-family: "Blix Bold";
   src: url("./sansforest/Blix-Bold.otf") format("opentype");
-  font-weight: 700;
+  font-weight: normal;
   font-style: normal;
 }
 
 @font-face {
-  font-family: "Lora";
-  src: url("./sansforest/Lora-Regular.ttf") format("truetype");
-  font-weight: 400;
+  font-family: "Libre Baskerville Regular";
+  src: url("./sansforest/LibreBaskerville-Regular.ttf") format("truetype");
+  font-weight: normal;
   font-style: normal;
 }
 
 @font-face {
-  font-family: "Lora";
-  src: url("./sansforest/Lora-Italic.ttf") format("truetype");
-  font-weight: 400;
+  font-family: "Libre Baskerville Italic";
+  src: url("./sansforest/LibreBaskerville-Italic.ttf") format("truetype");
+  font-weight: normal;
   font-style: italic;
 }
 
 @font-face {
-  font-family: "GenRyuMin2";
-  src: url("./sansforest/GenRyuMin2TW-M.otf") format("opentype");
-  font-weight: 400;
+  font-family: "GenRyuMin L";
+  src: url("./sansforest/GenRyuMin2 TW-L.otf") format("opentype");
+  font-weight: normal;
   font-style: normal;
 }
 
 @font-face {
-  font-family: "Heading Mixed";
+  font-family: "Heading Mixed Regular";
   src: url("./sansforest/PlusJakartaSans-Regular.otf") format("opentype");
-  font-weight: 400;
+  font-weight: normal;
   font-style: normal;
   unicode-range: U+0000-00FF, U+0100-024F, U+1E00-1EFF, U+2000-206F;
 }
 
 @font-face {
-  font-family: "Heading Mixed";
-  src: url("./sansforest/PlusJakartaSans-Bold.otf") format("opentype");
-  font-weight: 700;
-  font-style: normal;
-  unicode-range: U+0000-00FF, U+0100-024F, U+1E00-1EFF, U+2000-206F;
-}
-
-@font-face {
-  font-family: "Heading Mixed";
+  font-family: "Heading Mixed Regular";
   src: url("./sansforest/GenSekiGothic2TW-R.otf") format("opentype");
-  font-weight: 400;
+  font-weight: normal;
   font-style: normal;
   unicode-range: U+2E80-2EFF, U+3000-303F, U+31C0-31EF, U+3400-4DBF, U+4E00-9FFF, U+F900-FAFF, U+FF00-FFEF;
 }
 
+@font-face {
+  font-family: "Heading Mixed Medium";
+  src: url("./sansforest/PlusJakartaSans-Regular.otf") format("opentype");
+  font-weight: normal;
+  font-style: normal;
+  unicode-range: U+0000-00FF, U+0100-024F, U+1E00-1EFF, U+2000-206F;
+}
+
+@font-face {
+  font-family: "Heading Mixed Medium";
+  src: url("./sansforest/GenSekiGothic2TW-M.otf") format("opentype");
+  font-weight: normal;
+  font-style: normal;
+  unicode-range: U+2E80-2EFF, U+3000-303F, U+31C0-31EF, U+3400-4DBF, U+4E00-9FFF, U+F900-FAFF, U+FF00-FFEF;
+}
+
+@font-face {
+  font-family: "Heading Mixed SemiBold";
+  src: url("./sansforest/PlusJakartaSans-Bold.otf") format("opentype");
+  font-weight: normal;
+  font-style: normal;
+  unicode-range: U+0000-00FF, U+0100-024F, U+1E00-1EFF, U+2000-206F;
+}
+
+@font-face {
+  font-family: "Heading Mixed SemiBold";
+  src: url("./sansforest/GenSekiGothic2TW-B.otf") format("opentype");
+  font-weight: normal;
+  font-style: normal;
+  unicode-range: U+2E80-2EFF, U+3000-303F, U+31C0-31EF, U+3400-4DBF, U+4E00-9FFF, U+F900-FAFF, U+FF00-FFEF;
+}
+
+@font-face {
+  font-family: "IBM Plex Mono Regular";
+  src: url("./sansforest/IBMPlexMono-Regular.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
 :root {
   /* —— Swiss Typography Fonts —— */
-  --font-heading: "Heading Mixed", sans-serif;
-  --font-latin: "Plus Jakarta Sans", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
-  --font-cjk-primary: "Blix", "Noto Sans TC", "PingFang TC", "Microsoft JhengHei", sans-serif;
-  --font-sans: var(--font-latin), var(--font-cjk-primary);
+  --font-heading-regular: "Heading Mixed Regular", sans-serif;
+  --font-heading-medium: "Heading Mixed Medium", sans-serif;
+  --font-heading-semibold: "Heading Mixed SemiBold", sans-serif;
 
-  --font-serif-latin: "Lora", "Times New Roman", serif;
-  --font-serif-cjk: "GenRyuMin2", "PMingLiU", serif;
+  --font-latin: "Plus Jakarta Sans", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
+  --font-cjk-regular: "Blix Regular", "Noto Sans TC", "PingFang TC", "Microsoft JhengHei", sans-serif;
+  --font-sans: var(--font-latin), var(--font-cjk-regular);
+  
+  --font-sans-medium: var(--font-latin), "Blix Medium", "Noto Sans TC", "PingFang TC", "Microsoft JhengHei", sans-serif;
+  --font-sans-semibold: var(--font-latin), "Blix SemiBold", "Noto Sans TC", "PingFang TC", "Microsoft JhengHei", sans-serif;
+  --font-sans-bold: var(--font-latin), "Blix Bold", "Noto Sans TC", "PingFang TC", "Microsoft JhengHei", sans-serif;
+
+  --font-serif-latin: "Libre Baskerville Regular", "Times New Roman", serif;
+  --font-serif-cjk: "GenRyuMin L", "PMingLiU", serif;
   --font-serif: var(--font-serif-latin), var(--font-serif-cjk), serif;
 
-  --monospace: "JetBrains Mono", "Fira Code", "Menlo", "Consolas", monospace;
+  --monospace: "IBM Plex Mono Regular", "JetBrains Mono", "Menlo", "Consolas", monospace;
 
   /* —— Color Palette (Dark) —— */
-  --bg-color: #000000;
-  --side-bar-bg-color: #1C1C1E;
+  --bg-color: #1C1C1E;
+  --side-bar-bg-color: #111111;
 
   /* Text */
   --text-color: #E5E5EA;
@@ -111,7 +149,7 @@
   --color-border-secondary: #3A3A3C;
 
   /* —— Code —— */
-  --code-bg: #1C1C1E;
+  --code-bg: #252526;
   --code-border-color: #2C2C2E;
   --code-cursor: #E5E5EA;
   --code-fg: #C9D1D9;
@@ -127,16 +165,16 @@
   --code-meta: #8B949E;
 
   /* —— Mermaid (Dark Theme Adjusted) —— */
-  --mermaid-node-color: #161B22;
-  --mermaid-node-border: #30363D;
+  --mermaid-node-color: #252526;
+  --mermaid-node-border: #3A3A3C;
   --mermaid-node-stroke-width: 2px;
-  --mermaid-line-color: #7EE787;
+  --mermaid-line-color: #B3CCBD;
   --mermaid-line-stroke-width: 2px;
-  --mermaid-edge-label-bg: #1E2E28;
+  --mermaid-edge-label-bg: #252526;
   --mermaid-font-size: 16px;
   --mermaid-font-family: var(--font-sans);
   --mermaid-theme: dark;
-  --mermaid-contrast-color: #58A6FF;
+  --mermaid-contrast-color: #B3CCBD;
 
   /* —— Selection —— */
   --select-text-bg-color: rgba(157, 179, 162, 0.3);
@@ -159,9 +197,9 @@
 html,
 body {
   font-family: var(--font-sans);
-  font-size: 13px;
-  font-weight: 500;
-  line-height: 1.3;
+  font-size: 14px;
+  font-weight: normal;
+  line-height: 1.6;
   color: var(--text-color);
   background: var(--bg-color);
 }
@@ -186,7 +224,7 @@ button,
 .btn {
   font-family: var(--font-sans);
   font-size: 1rem;
-  font-weight: 500;
+  font-weight: normal;
 }
 
 .sidebar,
@@ -194,8 +232,8 @@ button,
 .outline-item,
 .top-title,
 .context-menu {
-  font-family: var(--font-sans);
-  font-weight: 500;
+  font-family: var(--font-sans-medium);
+  font-weight: normal;
 }
 
 #typora-sidebar,
@@ -252,22 +290,20 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: "Heading Mixed" !important;
-  font-weight: 400;
+  font-family: var(--font-heading-regular) !important;
+  font-weight: normal;
   color: var(--text-color);
-  margin: 1.1rem 0 0.4rem;
+  margin: 1.8rem 0 0.6rem;
 }
 
 h1 {
   font-size: 3.0rem;
-  border-bottom: 1px solid var(--color-border-secondary);
-  padding-bottom: 0.15rem;
+  font-family: var(--font-heading-medium) !important;
+  font-weight: normal;
 }
 
 h2 {
   font-size: 2.4rem;
-  border-bottom: 1px solid var(--color-border-secondary);
-  padding-bottom: 0.15rem;
 }
 
 h3 {
@@ -283,9 +319,10 @@ h5 {
 }
 
 h6 {
-  font-size: 1.1rem;
+  font-size: 1.2rem;
   color: var(--text-dimmed);
-  font-weight: 600;
+  font-family: var(--font-heading-semibold) !important;
+  font-weight: normal;
   text-transform: uppercase;
 }
 
@@ -297,12 +334,12 @@ h6 {
   display: none !important;
 }
 
-#write h1 + p,
-#write h2 + p,
-#write h3 + p,
-#write h4 + p,
-#write h5 + p,
-#write h6 + p {
+#write h1+p,
+#write h2+p,
+#write h3+p,
+#write h4+p,
+#write h5+p,
+#write h6+p {
   margin-top: 0.4rem;
 }
 
@@ -313,15 +350,24 @@ h6 {
 p,
 li {
   font-size: 1.25rem;
-  line-height: 1.15;
+  line-height: 1.65;
   color: var(--text-color);
-  font-weight: 500;
+  font-weight: 400;
+}
+
+strong, b {
+  font-family: var(--font-sans-bold);
+  font-weight: normal;
+}
+
+em, i {
+  font-family: "Libre Baskerville Italic", var(--font-serif-cjk);
+  font-style: normal;
 }
 
 #write ol,
 #write ul {
   padding-left: 2rem;
-  font-weight: 500;
 }
 
 /* Swiss Style Blockquote: Clear distinct serif or precision sans */
@@ -334,7 +380,7 @@ blockquote {
   margin: 2rem 0;
   padding: 1.2rem 1.7rem;
   border-left: 4px solid var(--primary-color);
-  background: #1C1C1E;
+  background: #252526;
 }
 
 /* ============================================================================ */
@@ -367,7 +413,7 @@ table {
   width: 100%;
   border-collapse: collapse;
   margin: 2rem 0;
-  font-size: 1rem;
+  font-size: 1.15rem;
 }
 
 table th,
@@ -379,10 +425,10 @@ table td {
 }
 
 table th {
-  font-weight: 600;
+  font-weight: normal;
   border-bottom: 2px solid var(--color-border-secondary);
   color: var(--text-color);
-  background: #1C1C1E;
+  background: #252526;
 }
 
 table tr:hover td {
@@ -397,7 +443,7 @@ code,
 tt,
 pre {
   font-family: var(--monospace);
-  font-size: 0.95rem;
+  font-size: 1.05rem;
   background: var(--code-bg);
   border: 1px solid var(--code-border-color);
   border-radius: 4px;

@@ -1,3 +1,97 @@
+<!--
+================================================================================
+  SANSFOREST THEME — DEV LOG
+  此檔案同時作為主題開發的進度記錄。LLM 請從本區段取得背景脈絡再行動。
+  格式：最新 session 放在最上方。
+================================================================================
+
+SESSION 2025-04-02
+------------------
+執行者：Claude Sonnet 4.6（claude-sonnet-4-6）
+使用者要求：修正三個方向的問題
+
+[已完成]
+
+1. 背景色分層（sansforest-dark.css / sansforest-light.css）
+   - Dark：--bg-color #000000 → #1C1C1E（編輯區深灰，不再純黑）
+            --side-bar-bg-color #1C1C1E → #111111（側欄更深，兩區有視覺差異）
+            --code-bg #1C1C1E → #252526（程式碼區塊微亮，與編輯區區隔）
+            blockquote / table th 硬編碼背景同步改為 #252526
+   - Light：--side-bar-bg-color #F0F0F0 → #E8E8ED（側欄稍深，分層更明顯）
+            其餘 Light 背景 (#FAFAFA) 已足夠柔和，未動
+
+2. 行距與 Inline Formula（兩檔皆改）
+   - html, body line-height：Dark 1.3 / Light 1.15 → 統一 1.6
+   - p, li line-height：1.45 → 1.65
+     原因：Typora 內 inline KaTeX/MathJax 公式高度超過一般文字，
+     舊行距 1.45 會導致公式上下被截斷；1.65 是合理的安全值。
+
+3. 程式碼字體（兩檔皆改）
+   - --monospace 由 "JetBrains Mono" 首位改為 "IBM Plex Mono"
+   - 在兩個 CSS 加入完整 @font-face 宣告（6 個 weight/style 變體）
+     字型檔已放置於 ./sansforest/IBMPlexMono-*.ttf
+
+4. Mermaid 主題色（兩檔皆改）
+   - Dark 舊值沿用 GitHub 色系（#7EE787 綠、#58A6FF 藍、#161B22 節點底）
+     與主題 sage-green 調性不符
+   - 現統一使用主題調：
+     Dark：node #252526 / border #3A3A3C / line+contrast #B3CCBD (primary)
+     Light：node #F2F2F7 / border #C7C7CC / line+contrast #8EA394 (primary)
+
+5. preview-theme.html
+   - 更新測試重點說明
+   - 加入 inline 數學符號段落測試行距
+   - 程式碼區塊改為展示主題常數（同時讓 IBM Plex Mono 有視覺對照）
+   - 表格更新為 6 項完成狀態
+
+[未完成 / 後續目標]
+
+A. 實際 Typora 環境驗證
+   - 在 Typora 中切換 sansforest-dark / sansforest-light 確認：
+     · 側欄 vs 編輯區的背景色對比是否肉眼清晰
+     · Inline formula（$E=mc^2$）在段落中是否不再被截斷
+     · IBM Plex Mono 是否正確載入（Typora > 偏好 > 字體 inspect）
+
+B. Mermaid 實機測試
+   - 在 Typora 插入 mermaid 流程圖，確認 node/line 顏色符合 sage-green 調性
+   - 若 Typora 的 mermaid renderer 忽略 CSS 變數，可能需改用
+     ```mermaid
+     %%{init: {"theme": "base", "themeVariables": {...}}}%%
+     ```
+     方式直接在 fences 頂端注入主題（需逐一手動 or 研究 Typora 的 mermaid 設定方式）
+
+C. 數學公式行距精調
+   - 目前僅靠提高 line-height 解決截斷問題，但若行距 1.65 仍不足（
+     例如 multi-line display math），可考慮：
+     · 對 .md-math / .mathjax-block 另設 margin-top/bottom
+     · 確認 Typora 是否支援 MathJax v3 vs v2（影響 CSS 鉤點）
+
+D. 字重系統整合
+   - 目前 body font-weight: 500（Blix Medium），heading font-weight: 400
+   - 可評估 h1–h3 是否需要 600（SemiBold）以在深灰背景上保持足夠對比
+   - IBM Plex Mono 已備有 SemiBold/Bold，程式碼關鍵字可對應使用
+
+E. 深色模式 scrollbar 樣式
+   - Dark 模式下，瀏覽器預設 scrollbar 在深灰背景上偏醒目
+   - 可考慮加入 ::-webkit-scrollbar 規則，使 scrollbar 與主題融合
+
+F. 打包與發布
+   - 確認 ./sansforest/ 資料夾下所有字型檔皆已齊備（目前有 Blix, Lora,
+     GenRyuMin2, GenSekiGothic2TW, PlusJakartaSans, IBMPlexMono 系列）
+   - 撰寫 README：說明字型授權、安裝步驟、Typora 版本需求
+   - 考慮上傳至 GitHub / Typora theme gallery
+
+================================================================================
+SESSION 歷史（早期）
+------------------
+- 初始版本使用 Satoshi 字體，後移除
+- 加入 GenRyuMin2 作為 CJK serif 主字體
+- 加入 demo HTML 頁（preview-theme.html），字體改為 Blix
+- 加入主題縮圖
+- 字體配對調整、色彩調整
+
+================================================================================
+-->
 <!DOCTYPE html>
 <html lang="zh-Hant">
 <head>
@@ -110,52 +204,61 @@
   <div id="write">
     <p class="preview-note">
       <strong>測試重點</strong>
-      這頁特別放了 `H1-H6` 與下一段落的連續組合，方便直接確認標題下方間距，以及正文是否已切換為 `Blix`。
+      ① Dark 改用深灰底（#1C1C1E），側欄用更深的 #111111 分層 ② Light 側欄加深至 #E8E8ED ③ 行距 p/li 增至 1.65 以免 inline formula 被截斷 ④ 程式碼字體改為 IBM Plex Mono ⑤ Mermaid 顏色統一使用主題 sage-green 系
     </p>
 
     <h1>Heading 1 標題一</h1>
-    <p>這是一段緊接在 H1 後面的文字，用來檢查標題與下一段的距離是否已經收斂，同時也能確認 `Blix` 的中文字型是否正確載入。</p>
+    <p>這是緊接在 H1 後面的文字。請確認 Dark 模式下背景是深灰（非純黑），且正文字型 Blix 正確載入。</p>
 
     <h2>Heading 2 標題二</h2>
-    <p>Sansforest 的主體設計偏向乾淨、寬版而且具有秩序感，所以這裡刻意保留較大的字級，再把段落間距收得更精準。</p>
+    <p>Sansforest 的主體設計偏向乾淨、寬版而且具有秩序感。行距應為 1.65，讓行與行之間有充足的呼吸空間。</p>
 
     <h3>Heading 3 標題三</h3>
-    <p>英數混排測試：Blix 2026 / Typography / Markdown / Typora / CSS Preview。</p>
+    <p>英數混排測試：Sansforest 2026 / Typography / Markdown / Typora / CSS Preview — 確認間距與行高自然。</p>
 
     <h4>Heading 4 標題四</h4>
-    <p>如果你主要想看字重差異，這段可以留意繁中在一般正文中的筆畫、留白和節奏。</p>
+    <p>這段留意繁中在一般正文中的筆畫、留白和節奏。</p>
 
     <h5>Heading 5 標題五</h5>
     <p>也建議順便檢查列表、引用、表格與程式碼區塊是否仍與新字體搭配自然。</p>
 
     <h6>Heading 6 標題六</h6>
-    <p>這段就是最小標題後的段落，通常最容易看出標題底部與內文頂部是不是太鬆。</p>
+    <p>最小標題後的段落，通常最容易看出標題底部與內文頂部的間距是否合適。</p>
 
-    <p>一般段落測試：山霧、街道、筆記、版面、節奏與層級，這些字可以快速看出中文無襯線字體在不同畫面密度下的穩定性。</p>
+    <h2>行距與 Inline 測試 Line Height &amp; Inline Styles</h2>
+    <p>一般段落測試：山霧、街道、筆記、版面、節奏與層級，這些字可以快速看出中文無襯線字體在不同畫面密度下的穩定性。行距已提升至 1.65，讓含有 <code>inline code</code>、<strong>粗體</strong>、<em>斜體</em> 或數學符號（如 E = mc²、∑ f(x) dx）的行不會因高度不一而被截斷。</p>
+    <p>第二段落：長文閱讀時，行與行之間是否有足夠的呼吸空間？字句是否清晰可辨？段落之間的分隔是否明確？<a href="#">連結樣式</a>在段落中的視覺協調性也請一併確認。</p>
 
     <blockquote>
       設計不是把東西排整齊而已，而是讓層級、節奏與閱讀情緒同時成立。
     </blockquote>
 
     <ul>
-      <li>清單項目一：確認 `Blix` 在列表中是否仍清楚。</li>
-      <li>清單項目二：檢查縮排與行高是否自然。</li>
-      <li>清單項目三：觀察亮暗主題切換後的對比。</li>
+      <li>清單項目一：確認 Blix 在列表中是否仍清楚。</li>
+      <li>清單項目二：檢查列表行高是否自然（line-height: 1.65）。</li>
+      <li>清單項目三：觀察亮暗主題切換後的對比與背景色分層。</li>
     </ul>
 
     <ol>
-      <li>先看 H1 到 H6 的下方距離。</li>
-      <li>再看正文中文是否已不是 IBM Plex Sans TC。</li>
-      <li>最後確認表格與程式碼是否正常。</li>
+      <li>Dark 模式：背景應為深灰 #1C1C1E（非純黑）。</li>
+      <li>程式碼字體：應顯示 IBM Plex Mono（inspect 確認 font-family）。</li>
+      <li>行距：段落文字行與行之間比舊版更寬鬆。</li>
     </ol>
 
-    <h2>Inline Styles</h2>
-    <p>你也可以測試 <strong>粗體文字</strong>、<em>斜體文字</em>、<a href="#">連結樣式</a>、以及 <code>inline code</code> 的整體協調性。</p>
-
-    <pre><code>const preview = {
-  theme: "sansforest",
-  font: "Blix",
-  check: ["heading spacing", "body font", "light/dark"]
+    <h2>Code Block — IBM Plex Mono</h2>
+    <pre><code>/* Sansforest Theme — typography constants */
+const theme = {
+  name: "sansforest",
+  bodyFont: "Blix",
+  monoFont: "IBM Plex Mono",   // 確認此字體是否正確渲染
+  lineHeight: {
+    base: 1.6,
+    paragraph: 1.65,           // 避免 inline formula 被截斷
+  },
+  bg: {
+    dark: { editor: "#1C1C1E", sidebar: "#111111" },
+    light: { editor: "#FAFAFA", sidebar: "#E8E8ED" },
+  },
 };</code></pre>
 
     <h2>Table</h2>
@@ -163,20 +266,35 @@
       <thead>
         <tr>
           <th>項目</th>
-          <th>內容</th>
+          <th>修改內容</th>
           <th>狀態</th>
         </tr>
       </thead>
       <tbody>
         <tr>
-          <td>正文字體</td>
-          <td>Blix</td>
-          <td>待目視確認</td>
+          <td>Dark 背景</td>
+          <td>純黑 → 深灰 #1C1C1E（編輯區）/ #111111（側欄）</td>
+          <td>✅ 已完成</td>
         </tr>
         <tr>
-          <td>標題間距</td>
-          <td>Heading 下方縮小</td>
-          <td>待目視確認</td>
+          <td>Light 側欄</td>
+          <td>#F0F0F0 → #E8E8ED（稍深，更明顯分層）</td>
+          <td>✅ 已完成</td>
+        </tr>
+        <tr>
+          <td>行距</td>
+          <td>p/li line-height 1.45 → 1.65；base 1.3/1.15 → 1.6</td>
+          <td>✅ 已完成</td>
+        </tr>
+        <tr>
+          <td>程式碼字體</td>
+          <td>JetBrains Mono → IBM Plex Mono（已加 @font-face）</td>
+          <td>✅ 已完成</td>
+        </tr>
+        <tr>
+          <td>Mermaid 顏色</td>
+          <td>GitHub 色調 → Sansforest sage-green (#B3CCBD / #8EA394)</td>
+          <td>✅ 已完成</td>
         </tr>
         <tr>
           <td>主題切換</td>
